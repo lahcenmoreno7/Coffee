@@ -31,6 +31,13 @@ Run `mvn test` to execute the test cases.
  - maven
  - Git
 
+## Postman screen
+ - Coffee Databae
+   ![screenshot](images/coffee-de.png)
+
+ - API
+   ![screenshot](images/amountPaid.png)
+   ![screenshot](images/amountOwed.png)
 
 
 
