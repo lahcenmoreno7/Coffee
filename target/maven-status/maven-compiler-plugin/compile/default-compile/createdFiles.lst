@@ -1,6 +1,0 @@
-com\coffee\assessment\model\order.class
-com\coffee\assessment\model\Payment.class
-com\coffee\assessment\CoffeeApplication.class
-com\coffee\assessment\configuration\DataLoaderService.class
-com\coffee\assessment\dto\AmountOperation.class
-com\coffee\assessment\model\Product.class

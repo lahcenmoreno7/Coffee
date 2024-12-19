@@ -5,6 +5,8 @@ import com.coffee.assessment.repository.OrderRepository;
 import com.coffee.assessment.repository.PaymentRepository;
 import com.coffee.assessment.repository.ProductRepository;
 import com.coffee.assessment.utils.CoffeeConstant;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -13,6 +15,8 @@ import java.util.Map;
 
 @Service
 public class CoffeeService {
+
+    private static final Logger logger = LoggerFactory.getLogger(CoffeeService.class);
 
    private final OrderRepository orderRepository;
    private final PaymentRepository paymentRepository;
@@ -26,11 +30,15 @@ public class CoffeeService {
 
 
     public double amountPaid(String username){
+        logger.info("processing amount paid");
         return paymentRepository.findTotalPaidByUser(username);
     }
 
 
     public Map<String, Double> amountStillOwes() {
+
+        logger.info("processing amount still owes");
+
         Map<String, Double> owesMapUsers = new HashMap<>();
 
         // Get orders and prices for all users

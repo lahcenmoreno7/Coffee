@@ -2,10 +2,14 @@ package com.coffee.assessment.controller;
 
 
 import com.coffee.assessment.dto.AmountOwesDTO;
+import com.coffee.assessment.exception.CoffeeException;
 import com.coffee.assessment.response.CoffeeResponse;
 import com.coffee.assessment.service.CoffeeService;
 import com.coffee.assessment.utils.CoffeeConstant;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +24,8 @@ import java.util.Map;
 public class CoffeeController {
 
 
+    private static final Logger logger = LoggerFactory.getLogger(CoffeeController.class);
+
     private final CoffeeService coffeeService;
 
 
@@ -32,17 +38,27 @@ public class CoffeeController {
     @GetMapping("/amount-paid/{username}")
     public ResponseEntity<CoffeeResponse> getAmountPaid (@PathVariable String username){
 
-        CoffeeResponse coffeeResponse = new CoffeeResponse();
-        double amountPaid = coffeeService.amountPaid(username);
-        coffeeResponse.setUser(username);
-        coffeeResponse.setTotalPaid(amountPaid);
+        logger.info("Received request for amount paid with parameter: {}", username);
 
-        return ResponseEntity.ok(coffeeResponse);
+        try {
+            CoffeeResponse coffeeResponse = new CoffeeResponse();
+            double amountPaid = coffeeService.amountPaid(username);
+            coffeeResponse.setUser(username);
+            coffeeResponse.setTotalPaid(amountPaid);
+            return ResponseEntity.ok(coffeeResponse);
+
+        } catch (CoffeeException e) {
+            throw new CoffeeException(String.valueOf(username));
+        }
     }
 
 
     @GetMapping("/amount-owed")
     public ResponseEntity<CoffeeResponse[]> getAmountStillOwes () {
+
+        logger.info("Received request for amount owed}");
+
+        try {
             Map<String, Double> amountOwes = coffeeService.amountStillOwes();
 
             List<CoffeeResponse> coffeeResponse = amountOwes.entrySet().stream()
@@ -50,9 +66,10 @@ public class CoffeeController {
             .toList();
 
             CoffeeResponse[] coffeeResponseList = coffeeResponse.toArray(new CoffeeResponse[0]);
-
             return ResponseEntity.ok(coffeeResponseList);
-
+        } catch (CoffeeException e) {
+                 throw new CoffeeException(HttpStatus.BAD_REQUEST);
+        }
     }
 
 }
