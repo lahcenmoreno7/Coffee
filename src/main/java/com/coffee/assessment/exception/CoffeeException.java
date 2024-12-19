@@ -1,29 +1,22 @@
 package com.coffee.assessment.exception;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.springframework.http.HttpStatus;
 
-public class CoffeeException extends  RuntimeException{
+@EqualsAndHashCode(callSuper = true)
+@Data
+public class CoffeeException extends RuntimeException  {
 
+    private String message;
+    private HttpStatus httpStatus;
 
-    public String param;
-    public String  message;
-    public String username;
-
-    public CoffeeException(String username) {
-
-           super(String.format("'%s' not found ",username));
+    public CoffeeException(String message) {
+        super(message);
     }
 
-
-
-    public CoffeeException(Throwable cause) {
-        super(cause);
-
+    public CoffeeException(HttpStatus httpStatus) {
+        super(String.valueOf(httpStatus));
     }
-
-    public CoffeeException(HttpStatus status) {
-        super(status.toString());
-    }
-
 
 }

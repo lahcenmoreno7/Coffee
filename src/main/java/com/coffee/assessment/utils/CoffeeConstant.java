@@ -23,4 +23,7 @@ public class CoffeeConstant {
             "FROM Order o " +
             "JOIN Product p ON o.drink = p.drink_name";
 
+
+    public static final String ERROR_USER_NOT_FOUND = "User not found";
+    public static final String ERROR_UNEXPECTED = "Unexpected error. Please try again later.";
 }

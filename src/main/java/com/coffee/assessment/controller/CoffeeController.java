@@ -48,7 +48,7 @@ public class CoffeeController {
             return ResponseEntity.ok(coffeeResponse);
 
         } catch (CoffeeException e) {
-            throw new CoffeeException(String.valueOf(username));
+            throw new CoffeeException(CoffeeConstant.ERROR_USER_NOT_FOUND);
         }
     }
 

@@ -1,6 +1,7 @@
 package com.coffee.assessment.service;
 
 import com.coffee.assessment.dto.AmountOwesDTO;
+import com.coffee.assessment.exception.CoffeeException;
 import com.coffee.assessment.repository.OrderRepository;
 import com.coffee.assessment.repository.PaymentRepository;
 import com.coffee.assessment.repository.ProductRepository;
@@ -31,7 +32,14 @@ public class CoffeeService {
 
     public double amountPaid(String username){
         logger.info("processing amount paid");
-        return paymentRepository.findTotalPaidByUser(username);
+
+        Double totalPaid = paymentRepository.findTotalPaidByUser(username);
+
+        if (totalPaid == null) {
+           throw new CoffeeException(CoffeeConstant.ERROR_USER_NOT_FOUND);
+        }
+
+        return totalPaid;
     }
 
 
