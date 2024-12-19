@@ -32,11 +32,12 @@ Run `mvn test` to execute the test cases.
  - Git
 
 ## Postman screen
+
  - Coffee Databae
-   ![screenshot](images/coffee-de.png)
+   ![alt text](https://github.com/lahcenmoreno7/Coffee/blob/main/src/main/resources/images/coffe-db.png)
 
  - API
-   ![screenshot](images/amountPaid.png)
+   ![alt text](https://github.com/lahcenmoreno7/Coffee/blob/main/src/main/resources/images/amountPaid.png)
    ![alt text](https://github.com/lahcenmoreno7/Coffee/blob/main/src/main/resources/images/amountOwed.png)
 
 
