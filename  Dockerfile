@@ -1,0 +1,15 @@
+
+
+FROM openjdk:17-jdk-slim
+
+
+WORKDIR /app
+
+
+COPY target/coffee-assessment-0.0.1-SNAPSHOT.jar
+
+# Expose the port the app will run on
+EXPOSE 8080
+
+# Run the application
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]
