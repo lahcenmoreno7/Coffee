@@ -1,0 +1,26 @@
+package com.coffee.assessment.utils;
+
+
+/**
+ * Constant class for coffee
+ */
+public class CoffeeConstant {
+
+    public static final String PAYMENT_FILE= "/data/payments.json";
+
+    public static final String PRODUCT_FILE= "/data/products.json";
+
+    public static final String ORDER_FILE= "/data/orders.json";
+
+    public static final Double PRICE_NULL = 0.0;
+
+    public  static final String FIND_PAYMENT_QUERY = "SELECT p.user AS user, p.amount AS amount FROM Payment p";
+
+    public  static final String FIND_TOTAL_PAID_BY_USER_QUERY = "SELECT SUM(p.amount) FROM Payment p WHERE p.user = :username";
+
+    public static final String FIND_TOTAL_OWES_BY_USER_QUERY = " " +
+            "SELECT o.user AS user, o.drink AS drink, o.size AS size, p.prices AS prices " +
+            "FROM Order o " +
+            "JOIN Product p ON o.drink = p.drink_name";
+
+}
