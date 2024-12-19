@@ -37,7 +37,7 @@ Run `mvn test` to execute the test cases.
 
  - API
    ![screenshot](images/amountPaid.png)
-   ![screenshot](images/amountOwed.png)
+   ![alt text](https://github.com/lahcenmoreno7/Coffee/blob/main/src/main/resources/images/amountOwed.png)
 
 
 
