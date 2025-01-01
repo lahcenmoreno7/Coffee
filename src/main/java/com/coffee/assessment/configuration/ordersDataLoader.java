@@ -33,8 +33,6 @@ public class ordersDataLoader {
             }catch( Exception ex) {
                 throw new RuntimeException("Failed to save orders data.", ex);
             }
-
-
         };
 
     }
